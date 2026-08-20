@@ -198,14 +198,14 @@ function renderOverview(R, D, last) {
   const wavg = totUsd ? withUsd.reduce((s, d) => s + d.rate * d.usd, 0) / totUsd : mean(D.map((d) => d.rate));
   const totSave = D.reduce((s, d) => s + (d.save || 0), 0);
   const avgCard = mean(D.filter((d) => d.vsCard !== null).map((d) => Math.abs(d.vsCard)));
-  const avgBot = mean(D.filter((d) => d.vsBot !== null).map((d) => d.vsBot));
+  const avgMidPrem = mean(D.filter((d) => d.vsMid !== null).map((d) => d.vsMid));
 
   $("#ovDeal").innerHTML = [
     tile("累计比牌价省下", money(totSave) + '<span class="unit">TZS</span>',
       totUsd ? `${D.length} 笔 · 共 ${fmt0(totUsd)} USD` : `${D.length} 笔（部分未填金额）`, "hero"),
     tile("加权平均议价", fmt(wavg, 2), totUsd ? "按美元金额加权" : "按笔数平均"),
     tile("平均优于牌价", avgCard === null ? "—" : fmt(avgCard, 2), "点 / 每美元"),
-    tile("平均高于央行价", sgn(avgBot), "议价相对 BOT 的溢价"),
+    tile("平均高于中间价", sgn(avgMidPrem), "议价相对 CRDB 中间价的溢价"),
   ].join("");
 
   renderAlerts(R, D);
@@ -229,22 +229,41 @@ function renderAlerts(R, D) {
       A.push({ t: "info", i: "→", h: `<em>汇率平稳</em>：BOT 近 5 日与近 20 日均价只差 ${sgn(gap)}，不到 ${fmt(thr, 1)} 的波动门槛，属窄幅震荡，没有明确方向。` });
   }
 
-  const sp = R.filter((r) => r.crdbMid !== null && r.bot !== null).map((r) => r.crdbMid - r.bot);
+  // 只跟最近 60 个有效日比。价差长期在漂移，拿全年均值当基准会得出错误结论。
+  const sp = R.filter((r) => r.crdbMid !== null && r.bot !== null)
+    .map((r) => r.crdbMid - r.bot).slice(-60);
   if (sp.length >= 6) {
     const cur = sp[sp.length - 1], m = mean(sp), s = sd(sp), z = s ? (cur - m) / s : 0;
     if (z < -1)
-      A.push({ t: "warn", i: "!", h: `<em>CRDB 牌价被压得偏低</em>：当前 CRDB 中间价比 BOT 低 ${fmt(Math.abs(cur), 2)}，历史均值只有 ${fmt(Math.abs(m), 2)}。这种时候柜台往上让价的空间通常更小，别按平常的幅度去谈。` });
+      A.push({ t: "warn", i: "!", h: `<em>CRDB 牌价被压得偏低</em>：当前 CRDB 中间价比 BOT 低 ${fmt(Math.abs(cur), 2)}，近 60 日均值只有 ${fmt(Math.abs(m), 2)}。这种时候柜台往上让价的空间通常更小，别按平常的幅度去谈。` });
     else if (z > 1)
-      A.push({ t: "good", i: "✓", h: `<em>谈价窗口相对有利</em>：当前 CRDB 与 BOT 的价差 ${sgn(cur)}，高于历史均值 ${sgn(m)}（${fmt(z, 1)} 个标准差）。` });
+      A.push({ t: "good", i: "✓", h: `<em>谈价窗口相对有利</em>：当前 CRDB 与 BOT 的价差 ${sgn(cur)}，高于近 60 日均值 ${sgn(m)}（${fmt(z, 1)} 个标准差）。` });
     else
-      A.push({ t: "info", i: "·", h: `CRDB 中间价与 BOT 的价差 ${sgn(cur)}，处在历史正常区间（均值 ${sgn(m)}，标准差 ${fmt(s, 2)}）。` });
+      A.push({ t: "info", i: "·", h: `CRDB 中间价与 BOT 的价差 ${sgn(cur)}，处在近 60 日的正常区间（均值 ${sgn(m)}，标准差 ${fmt(s, 2)}）。` });
   }
 
-  const off = D.filter((d) => d.vsBot !== null).map((d) => d.vsBot);
-  if (off.length >= 1 && last.bot !== null) {
-    const m = mean(off), s = off.length >= 2 ? sd(off) : null;
-    const target = last.bot + m;
-    A.push({ t: "info", i: "◎", h: `<em>今日议价参考</em>：你谈成的价格平均比当日 BOT 高 ${fmt(m, 2)}${s !== null ? `（波动 ±${fmt(s, 2)}）` : ""}。按今天 BOT ${fmt(last.bot, 2)} 推算，<b>${fmt0(target)}</b> 上下是你的正常水平${s !== null ? `，压到 ${fmt0(target - s)} 以下算谈得好` : ""}。样本 ${off.length} 笔，仅供参考。` });
+  // 议价参考 —— 锚在 CRDB 中间价上。
+  // 用 BOT 当锚点不可靠：CRDB 与 BOT 的价差本身在长期漂移，
+  // 混不同时期的样本会把参考价拉偏十几个点。
+  const offMid = D.filter((d) => d.vsMid !== null).map((d) => d.vsMid);
+  if (offMid.length >= 1 && last.crdbMid !== null) {
+    const m = mean(offMid), s = offMid.length >= 2 ? sd(offMid) : null;
+    const target = last.crdbMid + m;
+    A.push({ t: "info", i: "◎", h: `<em>今日议价参考</em>：你谈成的价格平均比当日 CRDB 中间价高 ${fmt(m, 2)}${s !== null ? `（波动 ±${fmt(s, 2)}）` : ""}。按今天中间价 ${fmt0(last.crdbMid)} 推算，<b>${fmt0(target)}</b> 上下是你的正常水平${s !== null ? `，压到 ${fmt0(target - s)} 以下算谈得好，超过 ${fmt0(target + s)} 就偏贵了` : ""}。样本 ${offMid.length} 笔。` });
+  }
+
+  // 牌价结构漂移 —— CRDB 相对央行的定价在变，直接影响谈价空间
+  const spAll = R.filter((r) => r.crdbMid !== null && r.bot !== null);
+  if (spAll.length >= 60) {
+    const recent = mean(spAll.slice(-20).map((r) => r.crdbMid - r.bot));
+    const older = mean(spAll.slice(-90, -60).map((r) => r.crdbMid - r.bot));
+    if (older !== null && Math.abs(recent - older) > 5) {
+      const tighter = recent < older;
+      A.push({ t: tighter ? "warn" : "info", i: tighter ? "↘" : "↗",
+        h: `<em>牌价结构在变</em>：CRDB 中间价相对 BOT 的价差，三个月前平均 ${sgn(older)}，最近 20 天平均 ${sgn(recent)}。${tighter
+          ? "银行牌价正在向央行价靠拢，牌价里的水分被挤掉，能让给你的空间也随之变小——拿半年前的议价幅度当标准会谈不下来。"
+          : "银行牌价相对央行走宽，谈价空间比之前更大，可以往下压一压。"}` });
+    }
   }
 
   const missing = R.slice(-10).filter((r) => r.bot === null).length;

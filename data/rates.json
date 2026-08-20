@@ -1,227 +1,1558 @@
 {
-  "updatedAt": "2026-08-20T16:01:57Z",
+  "updatedAt": "2026-08-20T14:00:00Z",
   "sources": {
     "bot": "https://www.bot.go.tz/exchangerate/excrates",
     "crdb": "https://crdbbank.co.tz/en/forex",
-    "xe": "xe.com"
+    "xe": "https://www.xe.com/currencyconverter/convert/?From=USD&To=TZS",
+    "history": "《实际每日汇率记录表》《CRDB_BOT_USD_TZS汇率》"
   },
   "rates": [
     {
-      "d": "2026-07-11",
+      "d": "2026-01-01",
+      "crdbBuy": 2430,
+      "crdbSell": 2510,
+      "bot": 2450.1502,
+      "xe": null
+    },
+    {
+      "d": "2026-01-02",
+      "crdbBuy": 2440,
+      "crdbSell": 2520,
+      "bot": 2450.1502,
+      "xe": null
+    },
+    {
+      "d": "2026-01-03",
+      "crdbBuy": 2440,
+      "crdbSell": 2520,
+      "bot": 2451.9015,
+      "xe": null
+    },
+    {
+      "d": "2026-01-04",
+      "crdbBuy": 2440,
+      "crdbSell": 2520,
+      "bot": 2451.9015,
+      "xe": null
+    },
+    {
+      "d": "2026-01-05",
+      "crdbBuy": 2440,
+      "crdbSell": 2520,
+      "bot": 2451.9015,
+      "xe": null
+    },
+    {
+      "d": "2026-01-06",
+      "crdbBuy": 2440,
+      "crdbSell": 2520,
+      "bot": 2454.5682,
+      "xe": null
+    },
+    {
+      "d": "2026-01-07",
+      "crdbBuy": 2450,
+      "crdbSell": 2530,
+      "bot": 2457.4638,
+      "xe": null
+    },
+    {
+      "d": "2026-01-08",
+      "crdbBuy": 2465,
+      "crdbSell": 2545,
+      "bot": 2460.2201,
+      "xe": null
+    },
+    {
+      "d": "2026-01-09",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.2101,
+      "xe": null
+    },
+    {
+      "d": "2026-01-10",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.1703,
+      "xe": null
+    },
+    {
+      "d": "2026-01-11",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.1703,
+      "xe": null
+    },
+    {
+      "d": "2026-01-12",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.1703,
+      "xe": null
+    },
+    {
+      "d": "2026-01-13",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.1703,
+      "xe": null
+    },
+    {
+      "d": "2026-01-14",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.827,
+      "xe": null
+    },
+    {
+      "d": "2026-01-15",
+      "crdbBuy": 2475,
+      "crdbSell": 2555,
+      "bot": 2458.827,
+      "xe": null
+    },
+    {
+      "d": "2026-01-16",
+      "crdbBuy": 2495,
+      "crdbSell": 2575,
+      "bot": 2458.827,
+      "xe": null
+    },
+    {
+      "d": "2026-01-17",
+      "crdbBuy": 2495,
+      "crdbSell": 2575,
+      "bot": 2462.4988,
+      "xe": null
+    },
+    {
+      "d": "2026-01-18",
+      "crdbBuy": 2495,
+      "crdbSell": 2575,
+      "bot": 2462.4988,
+      "xe": null
+    },
+    {
+      "d": "2026-01-19",
+      "crdbBuy": 2505,
+      "crdbSell": 2585,
+      "bot": 2462.4988,
+      "xe": null
+    },
+    {
+      "d": "2026-01-20",
+      "crdbBuy": 2510,
+      "crdbSell": 2590,
+      "bot": 2467.7228,
+      "xe": null
+    },
+    {
+      "d": "2026-01-21",
+      "crdbBuy": 2505,
+      "crdbSell": 2585,
+      "bot": 2471.8025,
+      "xe": null
+    },
+    {
+      "d": "2026-01-22",
+      "crdbBuy": 2510,
+      "crdbSell": 2590,
+      "bot": 2477.1658,
+      "xe": null
+    },
+    {
+      "d": "2026-01-23",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2481.4445,
+      "xe": null
+    },
+    {
+      "d": "2026-01-24",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2487.2954,
+      "xe": null
+    },
+    {
+      "d": "2026-01-25",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2487.2954,
+      "xe": null
+    },
+    {
+      "d": "2026-01-26",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2487.2954,
+      "xe": null
+    },
+    {
+      "d": "2026-01-27",
+      "crdbBuy": 2525,
+      "crdbSell": 2605,
+      "bot": 2486.6785,
+      "xe": null
+    },
+    {
+      "d": "2026-01-28",
+      "crdbBuy": 2530,
+      "crdbSell": 2610,
+      "bot": 2484.8476,
+      "xe": null
+    },
+    {
+      "d": "2026-01-29",
+      "crdbBuy": 2530,
+      "crdbSell": 2610,
+      "bot": 2484.85,
+      "xe": null
+    },
+    {
+      "d": "2026-01-30",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2484.8476,
+      "xe": null
+    },
+    {
+      "d": "2026-01-31",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2518.0524,
+      "xe": null
+    },
+    {
+      "d": "2026-02-01",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2518.0524,
+      "xe": null
+    },
+    {
+      "d": "2026-02-02",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2518.0524,
+      "xe": null
+    },
+    {
+      "d": "2026-02-03",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2526.0028,
+      "xe": null
+    },
+    {
+      "d": "2026-02-04",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2534.4309,
+      "xe": null
+    },
+    {
+      "d": "2026-02-05",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2549.8641,
+      "xe": null
+    },
+    {
+      "d": "2026-02-06",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2549.8641,
+      "xe": null
+    },
+    {
+      "d": "2026-02-07",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2553.2771,
+      "xe": null
+    },
+    {
+      "d": "2026-02-08",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2553.2771,
+      "xe": null
+    },
+    {
+      "d": "2026-02-09",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2553.2771,
+      "xe": null
+    },
+    {
+      "d": "2026-02-10",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2555.3667,
+      "xe": null
+    },
+    {
+      "d": "2026-02-11",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2559.8246,
+      "xe": null
+    },
+    {
+      "d": "2026-02-12",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2563.2475,
+      "xe": null
+    },
+    {
+      "d": "2026-02-13",
+      "crdbBuy": 2568,
+      "crdbSell": 2648,
+      "bot": 2569.2974,
+      "xe": null
+    },
+    {
+      "d": "2026-02-14",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2559.8246,
+      "xe": null
+    },
+    {
+      "d": "2026-02-15",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2559.8246,
+      "xe": null
+    },
+    {
+      "d": "2026-02-16",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2559.8246,
+      "xe": null
+    },
+    {
+      "d": "2026-02-17",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2573.8647,
+      "xe": null
+    },
+    {
+      "d": "2026-02-18",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2575.7553,
+      "xe": null
+    },
+    {
+      "d": "2026-02-19",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2576.0837,
+      "xe": null
+    },
+    {
+      "d": "2026-02-20",
+      "crdbBuy": 2550,
+      "crdbSell": 2630,
+      "bot": 2580.3126,
+      "xe": null
+    },
+    {
+      "d": "2026-02-21",
+      "crdbBuy": 2540,
+      "crdbSell": 2620,
+      "bot": 2572.7602,
+      "xe": null
+    },
+    {
+      "d": "2026-02-22",
+      "crdbBuy": 2540,
+      "crdbSell": 2620,
+      "bot": 2572.7602,
+      "xe": null
+    },
+    {
+      "d": "2026-02-23",
+      "crdbBuy": 2540,
+      "crdbSell": 2620,
+      "bot": 2572.7602,
+      "xe": null
+    },
+    {
+      "d": "2026-02-24",
+      "crdbBuy": 2530,
+      "crdbSell": 2610,
+      "bot": 2568.2228,
+      "xe": null
+    },
+    {
+      "d": "2026-02-25",
+      "crdbBuy": 2525,
+      "crdbSell": 2605,
+      "bot": 2570.4318,
+      "xe": null
+    },
+    {
+      "d": "2026-02-26",
+      "crdbBuy": 2505,
+      "crdbSell": 2585,
+      "bot": 2557.8444,
+      "xe": null
+    },
+    {
+      "d": "2026-02-27",
+      "crdbBuy": 2500,
+      "crdbSell": 2580,
+      "bot": 2546.7397,
+      "xe": null
+    },
+    {
+      "d": "2026-02-28",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2542.451,
+      "xe": null
+    },
+    {
+      "d": "2026-03-01",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2542.451,
+      "xe": null
+    },
+    {
+      "d": "2026-03-02",
+      "crdbBuy": 2519,
+      "crdbSell": 2599,
+      "bot": 2542.451,
+      "xe": null
+    },
+    {
+      "d": "2026-03-03",
+      "crdbBuy": 2530,
+      "crdbSell": 2610,
+      "bot": 2546.5406,
+      "xe": null
+    },
+    {
+      "d": "2026-03-04",
+      "crdbBuy": 2530,
+      "crdbSell": 2610,
+      "bot": 2550.3417,
+      "xe": null
+    },
+    {
+      "d": "2026-03-05",
+      "crdbBuy": 2540,
+      "crdbSell": 2620,
+      "bot": 2553.8941,
+      "xe": null
+    },
+    {
+      "d": "2026-03-06",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2559.2773,
+      "xe": null
+    },
+    {
+      "d": "2026-03-07",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2563.0983,
+      "xe": null
+    },
+    {
+      "d": "2026-03-08",
+      "crdbBuy": 2545,
+      "crdbSell": 2625,
+      "bot": 2563.0983,
+      "xe": null
+    },
+    {
+      "d": "2026-03-09",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2563.0983,
+      "xe": null
+    },
+    {
+      "d": "2026-03-10",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2563.1878,
+      "xe": null
+    },
+    {
+      "d": "2026-03-11",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2563.1878,
+      "xe": null
+    },
+    {
+      "d": "2026-03-12",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2571.188,
+      "xe": null
+    },
+    {
+      "d": "2026-03-13",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2572.4915,
+      "xe": null
+    },
+    {
+      "d": "2026-03-14",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2574.5314,
+      "xe": null
+    },
+    {
+      "d": "2026-03-15",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2574.5314,
+      "xe": null
+    },
+    {
+      "d": "2026-03-16",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2574.5314,
+      "xe": null
+    },
+    {
+      "d": "2026-03-17",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2580.0141,
+      "xe": null
+    },
+    {
+      "d": "2026-03-18",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2585.1784,
+      "xe": null
+    },
+    {
+      "d": "2026-03-19",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2585.5565,
+      "xe": null
+    },
+    {
+      "d": "2026-03-20",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2585.4471,
+      "xe": null
+    },
+    {
+      "d": "2026-03-21",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2584.064,
+      "xe": null
+    },
+    {
+      "d": "2026-03-22",
+      "crdbBuy": null,
+      "crdbSell": null,
+      "bot": 2584.064,
+      "xe": null
+    },
+    {
+      "d": "2026-03-23",
+      "crdbBuy": 2535,
+      "crdbSell": 2615,
+      "bot": 2584.064,
+      "xe": null
+    },
+    {
+      "d": "2026-03-24",
+      "crdbBuy": 2540,
+      "crdbSell": 2620,
+      "bot": 2580.83,
+      "xe": null
+    },
+    {
+      "d": "2026-03-25",
+      "crdbBuy": 2550,
+      "crdbSell": 2630,
+      "bot": 2576.7503,
+      "xe": null
+    },
+    {
+      "d": "2026-03-26",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2570.6109,
+      "xe": null
+    },
+    {
+      "d": "2026-03-27",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2574.4916,
+      "xe": null
+    },
+    {
+      "d": "2026-03-28",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2577.3971,
+      "xe": null
+    },
+    {
+      "d": "2026-03-29",
+      "crdbBuy": 2555,
+      "crdbSell": 2635,
+      "bot": 2577.3971,
+      "xe": null
+    },
+    {
+      "d": "2026-03-30",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2577.3971,
+      "xe": null
+    },
+    {
+      "d": "2026-03-31",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2581.5664,
+      "xe": null
+    },
+    {
+      "d": "2026-04-01",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2581.5664,
+      "xe": null
+    },
+    {
+      "d": "2026-04-02",
+      "crdbBuy": 2565,
+      "crdbSell": 2645,
+      "bot": 2586.3227,
+      "xe": null
+    },
+    {
+      "d": "2026-04-03",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-04",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-05",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-06",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-07",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-08",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2590.2532,
+      "xe": null
+    },
+    {
+      "d": "2026-04-09",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2592.8403,
+      "xe": null
+    },
+    {
+      "d": "2026-04-10",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2596.0842,
+      "xe": null
+    },
+    {
+      "d": "2026-04-11",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2597.0792,
+      "xe": null
+    },
+    {
+      "d": "2026-04-12",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2597.0792,
+      "xe": null
+    },
+    {
+      "d": "2026-04-13",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2597.0792,
+      "xe": null
+    },
+    {
+      "d": "2026-04-14",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2598.9798,
+      "xe": null
+    },
+    {
+      "d": "2026-04-15",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2600.8206,
+      "xe": null
+    },
+    {
+      "d": "2026-04-16",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2600.9898,
+      "xe": null
+    },
+    {
+      "d": "2026-04-17",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2602.0147,
+      "xe": null
+    },
+    {
+      "d": "2026-04-18",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2601.7062,
+      "xe": null
+    },
+    {
+      "d": "2026-04-19",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2601.7062,
+      "xe": null
+    },
+    {
+      "d": "2026-04-20",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2601.7062,
+      "xe": null
+    },
+    {
+      "d": "2026-04-21",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2603.5669,
+      "xe": null
+    },
+    {
+      "d": "2026-04-22",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2603.6664,
+      "xe": null
+    },
+    {
+      "d": "2026-04-23",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2602.9102,
+      "xe": null
+    },
+    {
+      "d": "2026-04-24",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2602.3132,
+      "xe": null
+    },
+    {
+      "d": "2026-04-25",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2603.7162,
+      "xe": null
+    },
+    {
+      "d": "2026-04-26",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2603.7162,
+      "xe": null
+    },
+    {
+      "d": "2026-04-27",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2603.7162,
+      "xe": null
+    },
+    {
+      "d": "2026-04-28",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2602.0545,
+      "xe": null
+    },
+    {
+      "d": "2026-04-29",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2600.0743,
+      "xe": null
+    },
+    {
+      "d": "2026-04-30",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2601.9848,
+      "xe": null
+    },
+    {
+      "d": "2026-05-01",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2600.3927,
+      "xe": null
+    },
+    {
+      "d": "2026-05-02",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2600.3927,
+      "xe": null
+    },
+    {
+      "d": "2026-05-03",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2600.3927,
+      "xe": null
+    },
+    {
+      "d": "2026-05-04",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2600.3927,
+      "xe": null
+    },
+    {
+      "d": "2026-05-05",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2600.5619,
+      "xe": null
+    },
+    {
+      "d": "2026-05-06",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2599.1688,
+      "xe": null
+    },
+    {
+      "d": "2026-05-07",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2599.8454,
+      "xe": null
+    },
+    {
+      "d": "2026-05-08",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2598.4524,
+      "xe": null
+    },
+    {
+      "d": "2026-05-09",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2598.94,
+      "xe": null
+    },
+    {
+      "d": "2026-05-10",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2598.94,
+      "xe": null
+    },
+    {
+      "d": "2026-05-11",
+      "crdbBuy": 2560,
+      "crdbSell": 2640,
+      "bot": 2598.94,
+      "xe": null
+    },
+    {
+      "d": "2026-05-12",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2598.2136,
+      "xe": null
+    },
+    {
+      "d": "2026-05-13",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2598.0046,
+      "xe": null
+    },
+    {
+      "d": "2026-05-14",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2598.0942,
+      "xe": null
+    },
+    {
+      "d": "2026-05-15",
+      "crdbBuy": 2570,
+      "crdbSell": 2650,
+      "bot": 2598.9997,
+      "xe": null
+    },
+    {
+      "d": "2026-05-16",
+      "crdbBuy": 2575,
+      "crdbSell": 2655,
+      "bot": 2600.4325,
+      "xe": null
+    },
+    {
+      "d": "2026-05-17",
+      "crdbBuy": 2580,
+      "crdbSell": 2660,
+      "bot": 2600.4325,
+      "xe": null
+    },
+    {
+      "d": "2026-05-18",
+      "crdbBuy": 2580,
+      "crdbSell": 2660,
+      "bot": 2600.4325,
+      "xe": null
+    },
+    {
+      "d": "2026-05-19",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2602.0545,
+      "xe": null
+    },
+    {
+      "d": "2026-05-20",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2603.0893,
+      "xe": null
+    },
+    {
+      "d": "2026-05-21",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2604.7112,
+      "xe": null
+    },
+    {
+      "d": "2026-05-22",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.5023,
+      "xe": null
+    },
+    {
+      "d": "2026-05-23",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.6118,
+      "xe": null
+    },
+    {
+      "d": "2026-05-24",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.6118,
+      "xe": null
+    },
+    {
+      "d": "2026-05-25",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.6118,
+      "xe": null
+    },
+    {
+      "d": "2026-05-26",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2608.1442,
+      "xe": null
+    },
+    {
+      "d": "2026-05-27",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2607.4476,
+      "xe": null
+    },
+    {
+      "d": "2026-05-28",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2607.4476,
+      "xe": null
+    },
+    {
+      "d": "2026-05-29",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2609.3382,
+      "xe": null
+    },
+    {
+      "d": "2026-05-30",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2609.2089,
+      "xe": null
+    },
+    {
+      "d": "2026-05-31",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2609.2089,
+      "xe": null
+    },
+    {
+      "d": "2026-06-01",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2609.2089,
+      "xe": null
+    },
+    {
+      "d": "2026-06-02",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2607.6566,
+      "xe": null
+    },
+    {
+      "d": "2026-06-03",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2607.0695,
+      "xe": null
+    },
+    {
+      "d": "2026-06-04",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.363,
+      "xe": null
+    },
+    {
+      "d": "2026-06-05",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2606.6914,
+      "xe": null
+    },
+    {
+      "d": "2026-06-06",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2610.1641,
+      "xe": null
+    },
+    {
+      "d": "2026-06-07",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2610.1641,
+      "xe": null
+    },
+    {
+      "d": "2026-06-08",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2610.1641,
+      "xe": null
+    },
+    {
+      "d": "2026-06-09",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2613.9951,
+      "xe": null
+    },
+    {
+      "d": "2026-06-10",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2615.7165,
+      "xe": null
+    },
+    {
+      "d": "2026-06-11",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2616.612,
+      "xe": null
+    },
+    {
+      "d": "2026-06-12",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2620.4231,
+      "xe": null
+    },
+    {
+      "d": "2026-06-13",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2620.7614,
+      "xe": null
+    },
+    {
+      "d": "2026-06-14",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2620.7614,
+      "xe": null
+    },
+    {
+      "d": "2026-06-15",
+      "crdbBuy": 2585,
+      "crdbSell": 2665,
+      "bot": 2620.7614,
+      "xe": null
+    },
+    {
+      "d": "2026-06-16",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2622.5127,
+      "xe": null
+    },
+    {
+      "d": "2026-06-17",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2628.274,
+      "xe": null
+    },
+    {
+      "d": "2026-06-18",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2629.8362,
+      "xe": null
+    },
+    {
+      "d": "2026-06-19",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2631.0203,
+      "xe": null
+    },
+    {
+      "d": "2026-06-20",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2631.0203,
+      "xe": null
+    },
+    {
+      "d": "2026-06-21",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2630.2442,
+      "xe": null
+    },
+    {
+      "d": "2026-06-22",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2630.2442,
+      "xe": null
+    },
+    {
+      "d": "2026-06-23",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2632.4831,
+      "xe": null
+    },
+    {
+      "d": "2026-06-24",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2631.5776,
+      "xe": null
+    },
+    {
+      "d": "2026-06-25",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2630.9308,
+      "xe": null
+    },
+    {
+      "d": "2026-06-27",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2628.1049,
+      "xe": null
+    },
+    {
+      "d": "2026-06-28",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2628.1049,
+      "xe": null
+    },
+    {
+      "d": "2026-06-29",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2628.1049,
+      "xe": null
+    },
+    {
+      "d": "2026-06-30",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2623.5177,
+      "xe": null
+    },
+    {
+      "d": "2026-07-01",
       "crdbBuy": 2590,
       "crdbSell": 2670,
       "bot": null,
       "xe": null
     },
     {
+      "d": "2026-07-02",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2625.657,
+      "xe": 2627.239
+    },
+    {
+      "d": "2026-07-03",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2629.4979,
+      "xe": 2625.2976
+    },
+    {
+      "d": "2026-07-04",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": null,
+      "xe": 2626.7403
+    },
+    {
+      "d": "2026-07-06",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2630.0352,
+      "xe": 2625.2813
+    },
+    {
+      "d": "2026-07-07",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2632.3537,
+      "xe": 2625.0506
+    },
+    {
+      "d": "2026-07-08",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": null,
+      "xe": 2624.9974
+    },
+    {
+      "d": "2026-07-09",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": null,
+      "xe": 2628.4691
+    },
+    {
+      "d": "2026-07-10",
+      "crdbBuy": 2590,
+      "crdbSell": 2670,
+      "bot": 2634.4632,
+      "xe": 2627.2742
+    },
+    {
+      "d": "2026-07-11",
+      "crdbBuy": 2595,
+      "crdbSell": 2675,
+      "bot": null,
+      "xe": 2630.6512
+    },
+    {
       "d": "2026-07-13",
       "crdbBuy": 2595,
       "crdbSell": 2675,
       "bot": null,
-      "xe": null
+      "xe": 2633.9541
     },
     {
       "d": "2026-07-14",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2635.7,
-      "xe": null
+      "bot": 2635.6971,
+      "xe": 2628.055
     },
     {
       "d": "2026-07-15",
       "crdbBuy": 2595,
       "crdbSell": 2675,
+      "bot": 2635.8861,
+      "xe": 2635.0352
+    },
+    {
+      "d": "2026-07-16",
+      "crdbBuy": 2595,
+      "crdbSell": 2675,
       "bot": null,
-      "xe": null
+      "xe": 2626.1883
     },
     {
       "d": "2026-07-17",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2636.63,
-      "xe": null
+      "bot": 2636.6324,
+      "xe": 2633.4013
     },
     {
       "d": "2026-07-18",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2635.29,
-      "xe": null
+      "bot": 2635.2891,
+      "xe": 2625.7673
     },
     {
       "d": "2026-07-19",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2635.29,
-      "xe": null
+      "bot": 2635.2891,
+      "xe": 2633.367
     },
     {
       "d": "2026-07-20",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2635.29,
-      "xe": null
+      "bot": 2635.2891,
+      "xe": 2631.5691
     },
     {
       "d": "2026-07-24",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2637.46,
-      "xe": 2619.27
+      "bot": 2637.4583,
+      "xe": 2619.2665
     },
     {
       "d": "2026-07-25",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2639.85,
-      "xe": 2634.44
+      "bot": 2639.8464,
+      "xe": 2634.4406
     },
     {
       "d": "2026-07-27",
       "crdbBuy": 2595,
       "crdbSell": 2675,
-      "bot": 2639.85,
-      "xe": 2639.57
+      "bot": 2639.8464,
+      "xe": 2639.5738
     },
     {
       "d": "2026-07-29",
       "crdbBuy": 2600,
       "crdbSell": 2680,
-      "bot": 2647.54,
-      "xe": 2640.22
+      "bot": 2647.5382,
+      "xe": 2640.2219
     },
     {
       "d": "2026-07-30",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2647.78,
+      "bot": 2647.777,
       "xe": 2653.86
     },
     {
       "d": "2026-07-31",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2649.75,
-      "xe": 2641.91
+      "bot": 2649.7472,
+      "xe": 2641.9132
     },
     {
       "d": "2026-08-01",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2645.22
+      "xe": 2645.2176
     },
     {
       "d": "2026-08-02",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2645.68,
-      "xe": 2645.88
+      "bot": 2645.6774,
+      "xe": 2645.8825
     },
     {
       "d": "2026-08-03",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2641.45
+      "xe": 2641.4452
     },
     {
       "d": "2026-08-04",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2648.85
+      "xe": 2648.8471
     },
     {
       "d": "2026-08-05",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2643.57,
-      "xe": 2645.83
+      "bot": 2643.5679,
+      "xe": 2645.8299
     },
     {
       "d": "2026-08-06",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2647.1
+      "xe": 2647.0984
     },
     {
       "d": "2026-08-07",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2646.99,
-      "xe": 2649.89
+      "bot": 2646.9909,
+      "xe": 2649.8889
     },
     {
       "d": "2026-08-10",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2644.79,
-      "xe": 2644.24
+      "bot": 2644.7918,
+      "xe": 2644.2371
     },
     {
       "d": "2026-08-11",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2643.54,
-      "xe": 2647.93
+      "bot": 2643.5381,
+      "xe": 2647.9322
     },
     {
       "d": "2026-08-12",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2653.38
+      "xe": 2653.3811
     },
     {
       "d": "2026-08-13",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": null,
-      "xe": 2649.07
+      "xe": 2649.0729
     },
     {
       "d": "2026-08-14",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": 2644.17,
-      "xe": 2645.09
+      "xe": 2645.0857
     },
     {
       "d": "2026-08-15",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2645.24,
-      "xe": 2650.08
+      "bot": 2645.2396,
+      "xe": 2650.0761
     },
     {
       "d": "2026-08-17",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2645.24,
-      "xe": 2646.89
+      "bot": 2645.2396,
+      "xe": 2646.8941
     },
     {
       "d": "2026-08-18",
       "crdbBuy": 2605,
       "crdbSell": 2685,
-      "bot": 2643.08,
-      "xe": 2638.29
+      "bot": 2643.0803,
+      "xe": 2638.285
     },
     {
       "d": "2026-08-19",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": 2642.74,
-      "xe": 2650.32
+      "xe": 2650.3208
     },
     {
       "d": "2026-08-20",
       "crdbBuy": 2605,
       "crdbSell": 2685,
       "bot": 2644.2147,
-      "xe": 2641.1401190201
+      "xe": 2645.5406
     }
   ]
 }
