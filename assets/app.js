@@ -70,12 +70,16 @@ function lookup(date, key) {
   return best;
 }
 
+/** 主导方向：多数记录是「卖美元换先令」时为 true。决定各处措辞与好坏方向。 */
+/** 恒按日期升序。enrich() 里的 idx 直接用于 state.deals 下标，两者必须保持同序，
+ *  否则补录一笔旧日期的记录后，编辑/删除会命中错误的行。 */
+const sortDeals = (a) => a.slice().sort((x, y) => (x.d < y.d ? -1 : x.d > y.d ? 1 : 0));
+
+const sellSide = (D) => D.filter((d) => d.dir === "sellUSD" || !d.buyUSD).length >= D.length / 2;
+
 /* ------------------------------------------------ 议价派生量 */
 function enrich() {
-  return state.deals
-    .slice()
-    .sort((a, b) => (a.d < b.d ? -1 : 1))
-    .map((dl, idx) => {
+  return state.deals.map((dl, idx) => {
       const mid = lookup(dl.d, "crdbMid"), buy = lookup(dl.d, "crdbBuy"),
         sell = lookup(dl.d, "crdbSell"), bot = lookup(dl.d, "bot"), xe = lookup(dl.d, "xe");
       const buyUSD = dl.dir !== "sellUSD";
@@ -123,7 +127,7 @@ async function loadDeals(pass) {
   const res = await fetch(`${CONFIG.dealsPath}?t=${Date.now()}`, { cache: "no-store" });
   if (!res.ok) throw new Error("读不到议价数据文件");
   const env = await res.json();
-  state.deals = await unseal(pass, env);   // 口令错误会在这里抛出
+  state.deals = sortDeals(await unseal(pass, env));   // 口令错误会在这里抛出
 }
 
 /* ==================================================== 口令门 */
@@ -187,12 +191,13 @@ function renderOverview(R, D, last) {
     tile("CRDB 中间价", fmt0(last.crdbMid) + '<span class="unit">TZS</span>',
       `买入 ${fmt0(last.crdbBuy)} · 卖出 ${fmt0(last.crdbSell)}`, "hero"),
     tile("BOT 央行中间价", fmt(last.bot, 2),
-      dBot === null ? "较上一有效日 —" : `较上一有效日 <span class="${dBot > 0 ? "up" : "down"}">${sgn(dBot)}</span>`),
+      dBot === null ? "较上一有效日 —" : `较上一有效日 <span class="${(dBot > 0) === sellSide(D) ? "down" : "up"}">${sgn(dBot)}</span>`),
     tile("XE 国际中间价", fmt(last.xe, 2)),
     tile("CRDB − BOT", sgn(spread), "牌价相对央行的偏离"),
   ].join("");
 
   // 议价战绩
+  const sellUSDside = sellSide(D);
   const withUsd = D.filter((d) => d.usd !== null);
   const totUsd = withUsd.reduce((s, d) => s + d.usd, 0);
   const wavg = totUsd ? withUsd.reduce((s, d) => s + d.rate * d.usd, 0) / totUsd : mean(D.map((d) => d.rate));
@@ -201,11 +206,13 @@ function renderOverview(R, D, last) {
   const avgMidPrem = mean(D.filter((d) => d.vsMid !== null).map((d) => d.vsMid));
 
   $("#ovDeal").innerHTML = [
-    tile("累计比牌价省下", money(totSave) + '<span class="unit">TZS</span>',
+    tile(sellUSDside ? "累计比牌价多拿" : "累计比牌价省下", money(totSave) + '<span class="unit">TZS</span>',
       totUsd ? `${D.length} 笔 · 共 ${fmt0(totUsd)} USD` : `${D.length} 笔（部分未填金额）`, "hero"),
     tile("加权平均议价", fmt(wavg, 2), totUsd ? "按美元金额加权" : "按笔数平均"),
-    tile("平均优于牌价", avgCard === null ? "—" : fmt(avgCard, 2), "点 / 每美元"),
-    tile("平均高于中间价", sgn(avgMidPrem), "议价相对 CRDB 中间价的溢价"),
+    tile("平均优于牌价", avgCard === null ? "—" : fmt(avgCard, 2),
+      sellUSDside ? "点 / 每美元（高于挂牌买入价）" : "点 / 每美元"),
+    tile(sellUSDside ? "平均高出中间价" : "平均高于中间价", sgn(avgMidPrem),
+      sellUSDside ? "议价比中间价多拿的点数" : "议价相对 CRDB 中间价的溢价"),
   ].join("");
 
   renderAlerts(R, D);
@@ -219,12 +226,17 @@ function renderAlerts(R, D) {
   const m5 = mean(bots.slice(-5).map((r) => r.bot));
   const m20 = mean(bots.slice(-20).map((r) => r.bot));
 
+  const SELL = sellSide(D);   // 卖美元换先令：汇率越高越有利
   if (m5 !== null && m20 !== null) {
     const gap = m5 - m20, thr = Math.max(2, m20 * 0.0015);
     if (gap > thr)
-      A.push({ t: "warn", i: "↑", h: `<em>先令在贬值</em>：BOT 近 5 日均价 ${fmt(m5, 2)}，高于近 20 日均价 ${fmt(m20, 2)}（${sgn(gap)}）。买美元的成本在往上走，近期有换汇计划的话早换通常更划算。` });
+      A.push({ t: SELL ? "good" : "warn", i: "↑", h: `<em>先令在贬值</em>：BOT 近 5 日均价 ${fmt(m5, 2)}，高于近 20 日均价 ${fmt(m20, 2)}（${sgn(gap)}）。${SELL
+        ? "同样一笔美元现在能换回更多先令，对你有利；手上有美元不急着用的话，再等等可能还能多拿一点。"
+        : "买美元的成本在往上走，近期有换汇计划的话早换通常更划算。"}` });
     else if (gap < -thr)
-      A.push({ t: "good", i: "↓", h: `<em>先令在走强</em>：BOT 近 5 日均价 ${fmt(m5, 2)}，低于近 20 日均价 ${fmt(m20, 2)}（${sgn(gap)}）。买美元的成本在下行，不急用可以再观察几天。` });
+      A.push({ t: SELL ? "warn" : "good", i: "↓", h: `<em>先令在走强</em>：BOT 近 5 日均价 ${fmt(m5, 2)}，低于近 20 日均价 ${fmt(m20, 2)}（${sgn(gap)}）。${SELL
+        ? "同样一笔美元换回的先令在变少，对你不利；有确定的换汇需求就别再等了。"
+        : "买美元的成本在下行，不急用可以再观察几天。"}` });
     else
       A.push({ t: "info", i: "→", h: `<em>汇率平稳</em>：BOT 近 5 日与近 20 日均价只差 ${sgn(gap)}，不到 ${fmt(thr, 1)} 的波动门槛，属窄幅震荡，没有明确方向。` });
   }
@@ -249,20 +261,29 @@ function renderAlerts(R, D) {
   if (offMid.length >= 1 && last.crdbMid !== null) {
     const m = mean(offMid), s = offMid.length >= 2 ? sd(offMid) : null;
     const target = last.crdbMid + m;
-    A.push({ t: "info", i: "◎", h: `<em>今日议价参考</em>：你谈成的价格平均比当日 CRDB 中间价高 ${fmt(m, 2)}${s !== null ? `（波动 ±${fmt(s, 2)}）` : ""}。按今天中间价 ${fmt0(last.crdbMid)} 推算，<b>${fmt0(target)}</b> 上下是你的正常水平${s !== null ? `，压到 ${fmt0(target - s)} 以下算谈得好，超过 ${fmt0(target + s)} 就偏贵了` : ""}。样本 ${offMid.length} 笔。` });
+    const better = SELL ? target + (s ?? 0) : target - (s ?? 0);
+    const worse = SELL ? target - (s ?? 0) : target + (s ?? 0);
+    A.push({ t: "info", i: "◎", h: `<em>今日议价参考</em>：你谈成的价格平均比当日 CRDB 中间价高 ${fmt(m, 2)}${s !== null ? `（波动 ±${fmt(s, 2)}）` : ""}。按今天中间价 ${fmt0(last.crdbMid)} 推算，<b>${fmt0(target)}</b> 上下是你的正常水平${s !== null ? `，${SELL ? `谈到 ${fmt0(better)} 以上算谈得好，低于 ${fmt0(worse)} 就吃亏了` : `压到 ${fmt0(better)} 以下算谈得好，超过 ${fmt0(worse)} 就偏贵了`}` : ""}。样本 ${offMid.length} 笔。` });
   }
 
-  // 牌价结构漂移 —— CRDB 相对央行的定价在变，直接影响谈价空间
-  const spAll = R.filter((r) => r.crdbMid !== null && r.bot !== null);
+  // 牌价结构漂移 —— 看你实际成交对照的那个牌价（卖美元看买入价）相对央行怎么变。
+  // 这决定了「相对牌价谈到 +X」这个习惯目标还成不成立。
+  const cardKey = SELL ? "crdbBuy" : "crdbSell";
+  const spAll = R.filter((r) => r[cardKey] !== null && r.bot !== null);
   if (spAll.length >= 60) {
-    const recent = mean(spAll.slice(-20).map((r) => r.crdbMid - r.bot));
-    const older = mean(spAll.slice(-90, -60).map((r) => r.crdbMid - r.bot));
+    const recent = mean(spAll.slice(-20).map((r) => r[cardKey] - r.bot));
+    const older = mean(spAll.slice(-90, -60).map((r) => r[cardKey] - r.bot));
     if (older !== null && Math.abs(recent - older) > 5) {
-      const tighter = recent < older;
-      A.push({ t: tighter ? "warn" : "info", i: tighter ? "↘" : "↗",
-        h: `<em>牌价结构在变</em>：CRDB 中间价相对 BOT 的价差，三个月前平均 ${sgn(older)}，最近 20 天平均 ${sgn(recent)}。${tighter
-          ? "银行牌价正在向央行价靠拢，牌价里的水分被挤掉，能让给你的空间也随之变小——拿半年前的议价幅度当标准会谈不下来。"
-          : "银行牌价相对央行走宽，谈价空间比之前更大，可以往下压一压。"}` });
+      const worse = SELL ? recent < older : recent > older;
+      const cardName = SELL ? "买入价" : "卖出价";
+      A.push({ t: worse ? "warn" : "good", i: worse ? "↘" : "↗",
+        h: `<em>牌价结构在变</em>：CRDB ${cardName}相对 BOT 的位置，三个月前平均 ${sgn(older)}，最近 20 天平均 ${sgn(recent)}（挪了 ${sgn(recent - older, 1)}）。${worse
+          ? (SELL
+            ? "银行的收美元报价相对央行越挪越低，等于起谈点在往下走。就算你每次都能在牌价上加到老幅度，实际拿到手的相对价格仍在变差——目标应该盯住「相对央行差多少」，而不是「相对牌价加多少」。"
+            : "银行卖美元的报价相对央行越抬越高，起谈点在往上走，同样的议价幅度换算下来成本其实在增加。")
+          : (SELL
+            ? "银行的收美元报价相对央行在回升，起谈点变好，这段时间谈同样的幅度实际更划算。"
+            : "银行卖美元的报价相对央行在回落，起谈点变好。")}` });
     }
   }
 
@@ -273,7 +294,7 @@ function renderAlerts(R, D) {
   const scored = D.filter((d) => d.vsCard !== null);
   if (scored.length) {
     const best = scored.slice().sort((a, b) => (a.buyUSD ? a.vsCard - b.vsCard : b.vsCard - a.vsCard))[0];
-    A.push({ t: "good", i: "★", h: `<em>最佳一笔</em>：${best.d} 议价 ${fmt0(best.rate)}，比当日 CRDB ${best.buyUSD ? "卖出" : "买入"}牌价 ${fmt0(best.card)} 优 ${fmt0(Math.abs(best.vsCard))}${best.usd ? `，省下约 ${money(best.save)} TZS` : ""}。` });
+    A.push({ t: "good", i: "★", h: `<em>最佳一笔</em>：${best.d} 议价 ${fmt0(best.rate)}，比当日 CRDB ${best.buyUSD ? "卖出" : "买入"}牌价 ${fmt0(best.card)} 优 ${fmt0(Math.abs(best.vsCard))}${best.usd ? `，${SELL ? "多拿" : "省下"}约 ${money(best.save)} TZS` : ""}。` });
   }
   if (D.length < 4)
     A.push({ t: "info", i: "·", h: `目前只有 ${D.length} 笔议价记录，统计规律还谈不上稳定。记满 8–10 笔之后，「议价参考」和「时机复盘」的参考价值会明显提升。` });
@@ -323,11 +344,16 @@ function renderDeals(R, D) {
   $("#legend2").innerHTML = G.map((s) => `<span><i style="background:${cssVar(s.color)}"></i>${s.name}</span>`).join("");
   groupedBars($("#chartDeals"), D, G, { emptyMsg: "还没有议价记录" });
 
+  const tSell = sellSide(D);
+  $("#timingDesc").innerHTML =
+    `每笔议价当天的 BOT 中间价，在此前 30 天区间里处在什么位置。${tSell
+      ? "你是卖美元换先令，汇率越高换回的先令越多，所以越靠<b>高位</b>越好。"
+      : "买美元时越靠<b>低位</b>越好。"}`;
   $("#timing").innerHTML = D.length
     ? `<div class="scroll"><table>
       <thead><tr><th class="txt">日期</th><th>议价</th><th>当日 BOT</th><th>近 30 日区间</th>
       <th class="txt" style="min-width:150px">低 ← 位置 → 高</th><th>百分位</th><th class="txt">评价</th></tr></thead>
-      <tbody>${D.map((d) => {
+      <tbody>${D.slice().reverse().map((d) => {
         if (d.pct === null)
           return `<tr><td>${d.d}</td><td>${fmt0(d.rate)}</td><td>${fmt(d.bot, 2)}</td>
             <td colspan="4" class="txt muted">该日 BOT 样本不足，无法评估</td></tr>`;
@@ -338,7 +364,7 @@ function renderDeals(R, D) {
           : bad ? `<span class="up">△ 点位偏${d.buyUSD ? "高" : "低"}</span>` : "中性";
         return `<tr><td>${d.d}</td><td><b>${fmt0(d.rate)}</b></td><td>${fmt(d.bot, 2)}</td>
           <td>${fmt(d.lo, 2)} – ${fmt(d.hi, 2)}</td>
-          <td><div class="meter"><div class="pin" style="left:calc(${(p * 100).toFixed(1)}% - 1.5px)"></div></div></td>
+          <td><div class="meter${d.buyUSD ? "" : " hi-good"}"><div class="pin" style="left:calc(${(p * 100).toFixed(1)}% - 1.5px)"></div></div></td>
           <td>${(p * 100).toFixed(0)}%</td><td class="txt">${verdict}</td></tr>`;
       }).join("")}</tbody></table></div>`
     : `<div class="empty">还没有议价记录</div>`;
@@ -346,13 +372,13 @@ function renderDeals(R, D) {
   $("#dealList").innerHTML = D.length
     ? `<div class="scroll"><table>
       <thead><tr><th class="txt">日期</th><th class="txt">方向</th><th>议价</th><th>美元金额</th>
-      <th>先令总额</th><th>当日中间价</th><th>vs 中间价</th><th>当日牌价</th><th>比牌价省</th>
+      <th>先令总额</th><th>当日中间价</th><th>vs 中间价</th><th>当日牌价</th><th>${sellSide(D) ? "比牌价多拿" : "比牌价省"}</th>
       <th class="txt">银行/经办</th><th class="txt">备注</th><th></th></tr></thead>
-      <tbody>${D.map((d) => `<tr>
+      <tbody>${D.slice().reverse().map((d) => `<tr>
         <td>${d.d}</td><td class="txt">${d.buyUSD ? "买入美元" : "卖出美元"}</td>
         <td><b>${fmt(d.rate, 2)}</b></td><td>${d.usd === null ? "—" : fmt0(d.usd)}</td>
         <td>${money(d.tzs)}</td><td>${fmt0(d.mid)}</td>
-        <td class="${d.vsMid > 0 ? "up" : "down"}">${sgn(d.vsMid)}</td>
+        <td class="${(d.vsMid > 0) === !d.buyUSD ? "down" : "up"}">${sgn(d.vsMid)}</td>
         <td>${fmt0(d.card)}</td>
         <td class="${d.save > 0 ? "down" : d.save < 0 ? "up" : ""}">${d.save === null ? "—" : money(d.save)}</td>
         <td class="txt">${esc([d.bank, d.by].filter(Boolean).join(" / ")) || "—"}</td>
@@ -426,7 +452,7 @@ async function removeDeal(idx) {
 function editDeal(idx) {
   const d = state.deals[idx];
   const f = $("#dealForm");
-  f.d.value = d.d; f.rate.value = d.rate; f.dir.value = d.dir || "buyUSD";
+  f.d.value = d.d; f.rate.value = d.rate; f.dir.value = d.dir || "sellUSD";
   f.usd.value = d.usd ?? ""; f.tzs.value = d.tzs ?? "";
   f.bank.value = d.bank || ""; f.by.value = d.by || ""; f.note.value = d.note || "";
   state.editing = idx;
@@ -498,6 +524,7 @@ function bind() {
     };
     if (state.editing !== null) state.deals[state.editing] = rec;
     else state.deals.push(rec);
+    state.deals = sortDeals(state.deals);
     const wasEdit = state.editing !== null;
     resetDealForm();
     render();

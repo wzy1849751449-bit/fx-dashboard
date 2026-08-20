@@ -120,7 +120,7 @@
 
     <div class="card">
       <header><h2>换汇时机复盘</h2></header>
-      <p class="desc">每笔议价当天的 BOT 中间价，在此前 30 天区间里处在什么位置。买美元时越靠<b>低位</b>越好。</p>
+      <p class="desc" id="timingDesc">每笔议价当天的 BOT 中间价，在此前 30 天区间里处在什么位置。</p>
       <div id="timing"></div>
     </div>
 
@@ -130,8 +130,8 @@
         <div class="field"><label>日期</label><input type="date" name="d" required></div>
         <div class="field"><label>议价汇率 (TZS/USD)</label><input type="number" name="rate" step="0.01" required placeholder="2655"></div>
         <div class="field"><label>方向</label><select name="dir">
-          <option value="buyUSD">买入美元（先令→美元）</option>
           <option value="sellUSD">卖出美元（美元→先令）</option>
+          <option value="buyUSD">买入美元（先令→美元）</option>
         </select></div>
         <div class="field"><label>美元金额 (USD)</label><input type="number" name="usd" step="1" placeholder="200000"></div>
         <div class="field"><label>先令总额（留空自动算）</label><input type="number" name="tzs" step="1" placeholder="531000000"></div>

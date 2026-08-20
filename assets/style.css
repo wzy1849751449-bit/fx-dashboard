@@ -217,6 +217,8 @@ td.wrap { white-space: normal; min-width: 130px; }
 /* 时机条 */
 .meter { position: relative; height: 7px; border-radius: 4px; min-width: 120px;
   background: linear-gradient(90deg, color-mix(in srgb, var(--good) 32%, var(--grid)), var(--grid) 50%, color-mix(in srgb, var(--crit) 32%, var(--grid))); }
+/* 卖美元：汇率越高越有利，好坏方向反过来 */
+.meter.hi-good { background: linear-gradient(90deg, color-mix(in srgb, var(--crit) 32%, var(--grid)), var(--grid) 50%, color-mix(in srgb, var(--good) 32%, var(--grid))); }
 .meter .pin { position: absolute; top: -4px; width: 3px; height: 15px; border-radius: 2px;
   background: var(--s4); box-shadow: 0 0 0 2px var(--surface); }
 
