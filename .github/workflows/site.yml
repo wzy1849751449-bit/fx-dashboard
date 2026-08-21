@@ -31,13 +31,13 @@ jobs:
         with:
           node-version: "20"
 
-      # push 触发时不抓取（那是刚提交完的回声），只走发布
+      # 每次触发都抓（含 push）。不怕死循环：GitHub 规定用 GITHUB_TOKEN
+      # 推的提交不会再触发 workflow，机器人自己那条 commit 到此为止。
+      # 这样你在网页上改任何文件，顺带就把数据刷新到最新。
       - name: 抓取 BOT / CRDB / XE
-        if: github.event_name != 'push'
         run: node scripts/fetch-rates.mjs
 
       - name: 提交变更
-        if: github.event_name != 'push'
         run: |
           git config user.name  "fx-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
