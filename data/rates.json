@@ -1,10 +1,9 @@
 {
-  "updatedAt": "2026-08-20T14:00:00Z",
+  "updatedAt": "2026-08-21T07:18:16Z",
   "sources": {
     "bot": "https://www.bot.go.tz/exchangerate/excrates",
     "crdb": "https://crdbbank.co.tz/en/forex",
-    "xe": "https://www.xe.com/currencyconverter/convert/?From=USD&To=TZS",
-    "history": "《实际每日汇率记录表》《CRDB_BOT_USD_TZS汇率》"
+    "xe": "xe.com"
   },
   "rates": [
     {
@@ -1553,6 +1552,13 @@
       "crdbSell": 2685,
       "bot": 2644.2147,
       "xe": 2645.5406
+    },
+    {
+      "d": "2026-08-21",
+      "crdbBuy": 2605,
+      "crdbSell": 2685,
+      "bot": 2644.2147,
+      "xe": 2640.0980491297
     }
   ]
 }
