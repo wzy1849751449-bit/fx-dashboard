@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T15:36:35Z",
+  "updatedAt": "2026-11-04T13:05:31Z",
   "sources": {
     "bot": "https://www.bot.go.tz/exchangerate/excrates",
     "crdb": "https://crdbbank.co.tz/en/forex",
@@ -1923,6 +1923,13 @@
       "crdbSell": 2680,
       "bot": 2640.6524,
       "xe": 2641.9623660681
+    },
+    {
+      "d": "2026-11-04",
+      "crdbBuy": 2600,
+      "crdbSell": 2680,
+      "bot": null,
+      "xe": 2647.684612313
     }
   ]
 }
